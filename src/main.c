@@ -1,9 +1,12 @@
+#include "twi.h"
 #include "uart.h"
 #include "ygo_card.h"
+#include <avr/pgmspace.h>
 #include <stdio.h>
 
 int main(void) {
     uart_init(9600);
+    twi_init();
 
     ygo_card_t favorite_card = {
         .name = "Dark Magician of Chaos",
@@ -15,13 +18,13 @@ int main(void) {
         .attribute = YGO_ATTRIBUTE_DARK,
     };
 
-    printf("My favorite monster card is: %s, a %x type with %d ATK and %d DEF.\n",
-           favorite_card.name,
-           favorite_card.type,
-           favorite_card.atk,
-           favorite_card.def);
+    printf_P(PSTR("My favorite monster card is: %s, a %x type with %d ATK and %d DEF.\n"),
+             favorite_card.name,
+             favorite_card.type,
+             favorite_card.atk,
+             favorite_card.def);
 
-    ygo_card_print(&favorite_card);
+    // ygo_card_print(&favorite_card);
 
     printf("The above.\n");
 }
