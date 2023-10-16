@@ -17,6 +17,7 @@ typedef enum twi_read twi_read_t;
 void twi_init(void);
 
 int twi_start(uint8_t addr, twi_read_t rw);
+int twi_repeat_start(uint8_t addr, twi_read_t rw);
 
 int twi_write(uint8_t data);
 
